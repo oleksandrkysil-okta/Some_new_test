@@ -15,11 +15,19 @@ class CommonPageObj():
    #     self.locators =
 
     def open(self, url):
-        "Navigates to given URL"
+        """
+        Navigates to given URL
+        :param url:
+        :return:
+        """
         self.driver.get(url)
 
     def wait_page_opened(self, timeout=TIMEOUTS['nano']):
-        "Wait for certain time for page to be loaded"
+        """
+        Wait for certain time for page to be loaded
+        :param timeout:
+        :return:
+        """
         for attempt in range(10):
             try:
                 is_page_loaded = self.driver.execute_script("return document.readyState;")
@@ -30,12 +38,21 @@ class CommonPageObj():
                     raise ex(f'{ex.__class__.__name__}, Page wasn`t opened for {timeout} period')
 
     def is_page_opened(self, expected_url):
-        "Compare given URL with actual"
+        """
+        Compare given URL with actual
+        :param expected_url:
+        :return:
+        """
         actual_page = self.driver.current_url
         assert actual_page == expected_url, f'Current page: {actual_page} didn`t match to expected {expected_url}'
 
     def wait_for_element_present(self, element_locator, timeout=TIMEOUTS['nano']):
-        "Wait for element to appear"
+        """
+        Wait for element to appear
+        :param element_locator:
+        :param timeout:
+        :return:
+        """
         try:
             element = WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(element_locator))
         except Exception as ex:
@@ -44,12 +61,20 @@ class CommonPageObj():
         return element
 
     def is_element_visible(self, element_locator):
-        "Verifies if element displayed"
+        """
+        Verifies if element displayed
+        :param element_locator:
+        :return:
+        """
         element = self.driver.find_element(element_locator)
         assert element.is_displayed(), f"Element with locator {element_locator} is not displayed"
 
     def wait_for_element_and_click(self, element_locator):
-        "Wait for element to be clicked"
+        """
+        Wait for element to be clicked
+        :param element_locator:
+        :return:
+        """
         try:
             element = WebDriverWait(self.driver, TIMEOUTS['medium']).until(
                 EC.element_to_be_clickable(element_locator))
@@ -59,7 +84,11 @@ class CommonPageObj():
         element.click()
 
     def wait_element_disappear(self, element_locator):
-        "Wait for element to disapear"
+        """
+        Wait for element to disapear
+        :param element_locator:
+        :return:
+        """
         try:
             is_element_visible = WebDriverWait(self.driver, TIMEOUTS['medium']).until(
                 EC.invisibility_of_element_located(element_locator))
@@ -69,6 +98,10 @@ class CommonPageObj():
         return is_element_visible
 
     def scroll_2_element(self, element):
-        "Scrolls to given webElement"
+        """
+        Scrolls to given webElement
+        :param element:
+        :return:
+        """
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
