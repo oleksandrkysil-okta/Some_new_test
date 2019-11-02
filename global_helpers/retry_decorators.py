@@ -20,6 +20,8 @@ def retry_on_exception(exception_name, retry_attempts=1, timeout=TIMEOUTS['nano'
                 try:
                     return func(*args, **kwargs)
                 except exception_name as ex:
+                    if attempt == retry_attempts:
+                        raise ex
                     LOGGER.info("Receved %s exception, try again", ex.__class__.__name__)
 
         return wrapper
@@ -40,6 +42,8 @@ def refresh_on_exception(exception_name, retry_attempts=1, timeout=TIMEOUTS['med
                 try:
                     return func(*args, **kwargs)
                 except exception_name as ex:
+                    if attempt == retry_attempts:
+                        raise ex
                     all_args = args + tuple(kwargs.values())
                     webdriver = next(filter(lambda drver: drver.__class__.__name__ == 'WebDriver', all_args), None)
                     LOGGER.info("Receved %s exception, try again", ex.__class__.__name__)
