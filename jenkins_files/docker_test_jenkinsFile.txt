@@ -1,9 +1,9 @@
 #!groovy
-properties{ disableConcurrentBuilds() }
+properties { disableConcurrentBuilds() }
 
-pipeline{
+pipeline {
     agent any
-    options{
+    options {
         timestamps()
     }
     stage("Try to run simple docker command through jenkinsfile") {
