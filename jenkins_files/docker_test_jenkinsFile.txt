@@ -10,7 +10,7 @@ pipeline {
         stage("Try to run simple docker command through jenkinsfile") {
         steps {
             echo "<========== run docker hello-world ==========>"
-            sh docker run hello-world
+            sh 'docker run hello-world'
         }
     }
     }
