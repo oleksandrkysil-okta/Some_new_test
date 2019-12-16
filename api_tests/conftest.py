@@ -2,6 +2,9 @@ import os
 import json
 from jsonschema import validate
 
+from global_helpers.constants import SCHEMA_PATH
+
+
 def validator(schema_name, response):
     """
     The overloaded method for response json schema validation.
@@ -10,7 +13,7 @@ def validator(schema_name, response):
     """
     assert response.status_code == 200, f"Next reposnse was't successful, reponse status_code {response.status_code}"
 
-    with open(os.path.abspath(schema_name + "json"), "r") as read_file:
+    with open(os.path.abspath(os.curdir) + SCHEMA_PATH + schema_name + ".json", "r") as read_file:
         schema_read = json.load(read_file)
 
-    assert validate(response.json(), schema_read)
+    validate(response.json(), schema_read)

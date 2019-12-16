@@ -7,3 +7,5 @@ TIMEOUTS = {
     "large": 10,
     "xlarge": 15
 }
+
+SCHEMA_PATH = "/api_tests/schemas_tests/schema/"
