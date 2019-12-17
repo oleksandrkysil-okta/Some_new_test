@@ -1,16 +1,20 @@
 import requests
 
 from api_tests.conftest import validator
+from global_helpers.helpers import email_name_generator
 
 REQUEST_LINK = "http://users.bugred.ru/tasks"
 
 
 def test_doregister_schema():
+    """
+    Test schema for doRegister API
+    """
+    email, name = email_name_generator()
 
-    # TODO create new user name and email generator and use it here
     json_data = {
-          "email": "some_testgon_teadasdab@yopmail.com",
-          "name": " ique_usedasdasda23",
+          "email": email,
+          "name": name,
           "password": "1"
     }
 
