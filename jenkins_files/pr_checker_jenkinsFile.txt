@@ -1,0 +1,16 @@
+#!groovy
+
+pipeline {
+    properties {[disableConcurrentBuilds()]}
+    agent any
+    options {
+    timestamps()
+    }
+    stages {
+        stage{"Run static code analyzer"}
+        steps {
+            echo "<========== Running Pylint ==========>"
+            sh 'pylint Some_new_test'
+        }
+    }
+}
