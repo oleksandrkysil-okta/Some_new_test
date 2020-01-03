@@ -1,4 +1,5 @@
 import requests
+import pytest
 
 from api_tests.conftest import validator
 from global_helpers.helpers import email_name_generator
@@ -6,6 +7,7 @@ from global_helpers.helpers import email_name_generator
 REQUEST_LINK = "http://users.bugred.ru/tasks"
 
 
+@pytest.mark.NW_schema_test
 def test_doregister_schema():
     """
     Test schema for doRegister API

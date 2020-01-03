@@ -1,16 +1,29 @@
 #!groovy
+properties([disableConcurrentBuilds()])
 
 pipeline {
-    properties {[disableConcurrentBuilds()]}
     agent any
     options {
-    timestamps()
+        timestamps()
     }
     stages {
-        stage{"Run static code analyzer"}
+        stage("Prepare environment for test runs") {
         steps {
-            echo "<========== Running Pylint ==========>"
-            sh 'pylint Some_new_test'
+        echo "<===== Install necessary tools for test runs =====>"
+        sh 'python3 pip install requirements.txt'
+        }
+    }
+        stage("Run New/Modified tests") {
+        steps {
+            echo "<========== Running New/Modified tests ==========>"
+            sh 'pytest -s -v -m "NW_"'
+            }
+        }
+    }
+      stage("Run small Smoke test to verify that nothing was broken") {
+        steps {
+        cho "<========== Running smoke tests ==========>"
+        sh 'pytest -s -v -m smoke'
         }
     }
 }
