@@ -3,7 +3,9 @@
 ##### Brief goal description:
 
 ##### I`ve added tag for Jenkins PR verification
- - [ ] "new_test"
+ - [ ] "NW_"
+ - [ ] NA
+ 
  
 ##### I`ve added screenshot with passed test
  - [ ] "Yes"
