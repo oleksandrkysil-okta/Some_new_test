@@ -2,3 +2,4 @@ pytest
 selenium
 jsonschema
 pylint
+flake8
