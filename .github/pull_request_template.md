@@ -4,7 +4,7 @@
 
 ##### I`ve added tag for Jenkins PR verification
  - [ ] "NW_"
- - [ ] NA
+ - [ ] "NA"
  
  
 ##### I`ve added screenshot with passed test
