@@ -10,7 +10,7 @@ pipeline {
         stage("Run static code analyzer") {
         steps {
             echo "<========== Running Pylint ==========>"
-            sh 'pylint ./*.py'
+            sh 'find . -type f -name "*.py" | xargs pylint --reports=y text'
             }
         }
     }
