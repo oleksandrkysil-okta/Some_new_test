@@ -8,4 +8,6 @@ TIMEOUTS = {
     "xlarge": 15
 }
 
+REQUEST_LINK = "http://users.bugred.ru/tasks"
+
 SCHEMA_PATH = "/api_tests/schemas_tests/schema/"
