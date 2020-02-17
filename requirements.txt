@@ -3,3 +3,5 @@ selenium
 jsonschema
 pylint
 flake8
+allure-pytest
+allure-python-commons
